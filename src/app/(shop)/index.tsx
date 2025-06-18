@@ -1,7 +1,7 @@
 import { FlatList, StatusBar, StyleSheet, Text, View } from "react-native";
 
 import { PRODUCTS } from "../../../assets/products";
-import { productListItem } from "../../components/product-List-Item";
+import ProductListItem from "../components/product-list-item";
 
 export default function Home() {
   return (
@@ -11,7 +11,15 @@ export default function Home() {
         data={PRODUCTS}
         renderItem={({ item }) => {
           return (
-            <View>
+            <View
+              style={{
+                width: "50%",
+                padding: 5,
+                backgroundColor: "#ccc",
+                marginBottom: 10,
+              }}
+            >
+              <ProductListItem product={item} />
               <Text> {item.title} </Text>
             </View>
           );
