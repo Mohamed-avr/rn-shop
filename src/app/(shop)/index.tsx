@@ -1,7 +1,8 @@
 import { FlatList, StatusBar, StyleSheet, Text, View } from "react-native";
 
 import { PRODUCTS } from "../../../assets/products";
-import ProductListItem from "../components/product-list-item";
+import ProductListItem from "../../components/product-list-item";
+import ListHeader from "../../components/list-header";
 
 export default function Home() {
   return (
@@ -9,34 +10,18 @@ export default function Home() {
       {/* <Text>/ Home </Text> */}
       <FlatList
         data={PRODUCTS}
-        renderItem={({ item }) => {
-          return (
-            <View
-              style={{
-                width: "50%",
-                padding: 5,
-                backgroundColor: "#ccc",
-                marginBottom: 10,
-              }}
-            >
-              <ProductListItem product={item} />
-              <Text> {item.title} </Text>
-            </View>
-          );
-        }}
+        renderItem={({ item }) => <ProductListItem product={item} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        ListHeaderComponent={<Text> Product</Text>}
+        ListHeaderComponent={ListHeader}
         contentContainerStyle={styles.flatListContent}
         columnWrapperStyle={styles.flatListColumn}
         style={{
           width: "100%",
           paddingHorizontal: 10,
-          paddingVertical: 5,
+          paddingVertical: 6,
         }}
-      >
-        {" "}
-      </FlatList>
+      ></FlatList>
     </View>
   );
 }
@@ -48,5 +33,8 @@ const styles = StyleSheet.create({
   flatListColumn: {
     // paddingVertical: 20,
     justifyContent: "space-between",
+  },
+  headerTitle: {
+    fontSize: 24,
   },
 });
