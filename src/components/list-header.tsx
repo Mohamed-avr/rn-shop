@@ -1,10 +1,22 @@
-import { View, Text, Image, Pressable, StyleSheet } from "react-native";
-import { Link } from "expo-router";
+import {
+  View,
+  Text,
+  Image,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { Link, Href } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { CATEGORIES } from "../../assets/categories";
 
 export default function ListHeader() {
+  const signOutFunc = () => {
+    alert("signed out successfully");
+  };
   return (
-    <View style={[styles.HeaderContainer]}>
+    <View style={[styles.headerContainer]}>
       <View style={styles.headerTop}>
         {/*  left starts */}
         <View style={styles.headerLeft}>
@@ -18,32 +30,63 @@ export default function ListHeader() {
             <Text style={styles.avatarText}>MohamedCode </Text>
           </View>
         </View>
-        <Link style={styles.cartContainer} href="./cart" asChild>
-          <Pressable>
-            {({ pressed }) => (
-              <View>
-                <FontAwesome
-                  name="shopping-cart"
-                  size={25}
-                  color="gray"
-                  style={{
-                    marginRight: 15,
-                    opacity: pressed ? 0.5 : 1,
-                  }}
-                />
-                <View style={styles.badgeContainer}>
-                  <Text style={styles.badgeText}> {1}</Text>
-                </View>
-              </View>
-            )}
-          </Pressable>
-        </Link>
         {/*  left ed */}
         {/* right start  */}
+        <View style={styles.headerRight}>
+          <Link style={styles.cartContainer} href="./cart" asChild>
+            <Pressable>
+              {({ pressed }) => (
+                <View>
+                  <FontAwesome
+                    name="shopping-cart"
+                    size={25}
+                    color="gray"
+                    style={{
+                      marginRight: 15,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
+                  />
+                  <View style={styles.badgeContainer}>
+                    <Text style={styles.badgeText}> {1}</Text>
+                  </View>
+                </View>
+              )}
+            </Pressable>
+          </Link>
+          <TouchableOpacity onPress={signOutFunc} style={styles.signOutButton}>
+            <FontAwesome name="sign-out" size={25} color="gray" />
+          </TouchableOpacity>
+        </View>
         {/*  right end */}
       </View>
-      <View style={styles.heroContainer}></View>
-      <View style={styles.categoriesContainer}></View>
+      <View style={styles.heroContainer}>
+        <Image
+          source={require("../../assets/images/hero.png")}
+          style={styles.heroImage}
+        />
+      </View>
+      <View style={styles.categoriesContainer}>
+        <Text style={styles.sectionTitle}> Categories</Text>
+        {/* flat list categories */}
+
+        <FlatList
+          data={CATEGORIES}
+          keyExtractor={(item) => item.name}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Link asChild href={`/categories/${item.slug}`}>
+              <Pressable style={styles.category}>
+                <Image
+                  source={{ uri: item.imageUrl }}
+                  style={styles.categoryImage}
+                />
+                <Text style={styles.categoryText}>{item.name}</Text>
+              </Pressable>
+            </Link>
+          )}
+        />
+      </View>
     </View>
   );
 }
