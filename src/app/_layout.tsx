@@ -15,6 +15,14 @@ export default function RootLayout() {
             headerTitleAlign: "center",
           }}
         />
+        <Stack.Screen
+          name="categories"
+          options={{
+            headerShown: true,
+            title: "categories",
+            headerTitleAlign: "center",
+          }}
+        />
 
         <Stack.Screen
           name="product"
@@ -31,14 +39,6 @@ export default function RootLayout() {
             title: "shoping cart ",
             headerTitleAlign: "center",
             presentation: "modal",
-          }}
-        />
-        <Stack.Screen
-          name="auth"
-          options={{
-            headerShown: true,
-            title: "Authentication",
-            headerTitleAlign: "center",
           }}
         />
       </Stack>

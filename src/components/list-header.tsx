@@ -10,6 +10,7 @@ import {
 import { Link, Href } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { CATEGORIES } from "../../assets/categories";
+import Category from "../app/categories /[slug]";
 
 export default function ListHeader() {
   const signOutFunc = () => {

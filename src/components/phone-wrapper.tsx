@@ -11,29 +11,31 @@ export default function PhoneWrapper({
   const [frontCamera, setFrontCamera] = useState(true);
 
   return (
-    <View style={styles.containerWrapper}>
-      {/* <View style={styles.btnOff}></View> */}
-      <View
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: Platform.OS === "web" ? 60 : 0,
-          overflow: "hidden",
-          borderColor: "#010103",
-          borderWidth: Platform.OS === "web" ? 6 : 0,
-        }}
-      >
-        {Platform.OS === "web" && (
-          // <View style={styles.StatusBar}>
+    <View style={{ flex: 1, backgroundColor: "#111" }}>
+      <View style={styles.containerWrapper}>
+        {/* <View style={styles.btnOff}></View> */}
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: Platform.OS === "web" ? 60 : 0,
+            overflow: "hidden",
+            borderColor: "#010103",
+            borderWidth: Platform.OS === "web" ? 6 : 0,
+          }}
+        >
+          {Platform.OS === "web" && (
+            // <View style={styles.StatusBar}>
 
-          // </View>
+            // </View>
 
-          <View style={styles.CameraView}>
-            <View style={styles.camera}> </View>
-          </View>
-        )}
+            <View style={styles.CameraView}>
+              <View style={styles.camera}> </View>
+            </View>
+          )}
 
-        {children}
+          {children}
+        </View>
       </View>
     </View>
   );
