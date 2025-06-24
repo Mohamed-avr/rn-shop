@@ -18,7 +18,7 @@ export default function RootLayout() {
         <Stack.Screen
           name="categories"
           options={{
-            headerShown: true,
+            headerShown: false,
             title: "categories",
             headerTitleAlign: "center",
           }}
