@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import { Redirect, Stack, useLocalSearchParams } from "expo-router";
 import { CATEGORIES } from "../../../assets/categories";
 import { PRODUCTS } from "../../../assets/products";
+import ProductListItem from "../../components/product-list-item";
 
 export default function Category() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -25,6 +26,14 @@ export default function Category() {
 
       <Image source={{ uri: Category.imageUrl }} style={styles.categoryImage} />
       <Text style={styles.categoryName}>{Category.name}</Text>
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        columnWrapperStyle={styles.productRow}
+        contentContainerStyle={styles.productList}
+        renderItem={({ item }) => <ProductListItem product={item} />}
+      />
     </View>
   );
 }

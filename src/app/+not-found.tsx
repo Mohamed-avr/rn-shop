@@ -12,7 +12,6 @@ export default function NotFoundScreen() {
       />
       <View style={styles.container}>
         <Text style={{ fontSize: 56, fontWeight: "bold", marginBottom: 32 }}>
-          {" "}
           404
         </Text>
         <Link href="/"> Go home screen</Link>
