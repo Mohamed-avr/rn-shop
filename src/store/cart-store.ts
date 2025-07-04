@@ -45,8 +45,22 @@ export const useCartStore = create<CartState>((set, get) => ({
     }
   },
 
-  removeItem: () => null,
-  incremenItem: () => null,
+  removeItem: (id: number) =>
+    set((state) => ({
+      items: state.items.filter((item) => item.id !== id),
+    })),
+  incremenItem: (id: number) =>
+    set((state) => {
+      const product = PRODUCTS.find((p) => p.id === id);
+      if (!product) return state;
+      return {
+        items: state.items.map((item) =>
+          item.id == id && item.quantity < product.maxQuantity
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+    }),
   decrementItem: () => null,
   getTotalPrice: () => "",
   getItemCount: () => 0,
