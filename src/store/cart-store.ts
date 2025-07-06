@@ -13,7 +13,7 @@ type CartState = {
   items: CartItemType[];
   addItem: (item: CartItemType) => void;
   removeItem: (id: number) => void;
-  incremenItem: (id: number) => void;
+  incrementItem: (id: number) => void;
   decrementItem: (id: number) => void;
   getTotalPrice: () => number;
   getItemCount: () => number;
@@ -49,7 +49,7 @@ export const useCartStore = create<CartState>((set, get) => ({
     set((state) => ({
       items: state.items.filter((item) => item.id !== id),
     })),
-  incremenItem: (id: number) =>
+  incrementItem: (id: number) =>
     set((state) => {
       const product = PRODUCTS.find((p) => p.id === id);
       if (!product) return state;
@@ -61,7 +61,26 @@ export const useCartStore = create<CartState>((set, get) => ({
         ),
       };
     }),
-  decrementItem: () => null,
-  getTotalPrice: () => "",
-  getItemCount: () => 0,
+  decrementItem: (id: number) =>
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === id && item.quantity > 1
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item
+      ),
+    })),
+  getTotalPrice: () => {
+    const { items } = get();
+    return items
+      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .toFixed(2);
+  },
+  getItemCount: () => {
+    const { items } = get();
+    return items.reduce((count, item) => count + item.quantity, 0);
+  },
+  clearCart: () => set({ items: [] }),
 }));

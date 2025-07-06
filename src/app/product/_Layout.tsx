@@ -9,7 +9,8 @@ export default function ProductLayout() {
       <Stack.Screen
         name="[slug]"
         options={({ navigation }) => ({
-          headerShown: false,
+          headerShown: true,
+          title: "Product Details",
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => {

@@ -11,8 +11,10 @@ import { Link, Href } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { CATEGORIES } from "../../assets/categories";
 import Category from "../app/categories/[slug]";
-
+import { useCartStore } from "../store/cart-store";
 export default function ListHeader() {
+  const { getItemCount } = useCartStore();
+
   const signOutFunc = () => {
     alert("signed out successfully");
   };
@@ -48,7 +50,7 @@ export default function ListHeader() {
                     }}
                   />
                   <View style={styles.badgeContainer}>
-                    <Text style={styles.badgeText}> {1}</Text>
+                    <Text style={styles.badgeText}> {getItemCount()}</Text>
                   </View>
                 </View>
               )}
