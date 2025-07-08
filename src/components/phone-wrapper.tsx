@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import { View, Text, Platform, StyleSheet, Image } from "react-native";
 
 export default function PhoneWrapper({
   children,
@@ -12,6 +12,49 @@ export default function PhoneWrapper({
 
   return (
     <View style={{ flex: 1, backgroundColor: "#111" }}>
+      <View
+        style={{
+          flex: 1,
+          position: "relative",
+          width: "100%",
+          paddingHorizontal: 35,
+          paddingTop: 40,
+        }}
+      >
+        <View
+          style={{
+            top: 0,
+            left: 0,
+            right: 0,
+            width: "100%",
+            height: 70,
+            backgroundColor: "#222",
+            justifyContent: "space-between",
+            flexDirection: "row",
+            paddingHorizontal: 20,
+            alignItems: "center",
+            borderRadius: 8,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 8,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 3.84,
+            elevation: 10,
+            borderColor: "#333",
+            borderWidth: 2,
+
+            zIndex: 10,
+          }}
+        >
+          <Image
+            source={require("../../assets/logoExpo.png")}
+            style={{ width: 26, height: 26 }}
+            resizeMode="contain"
+          />
+        </View>
+      </View>
       <View style={styles.containerWrapper}>
         {/* <View style={styles.btnOff}></View> */}
         <View
