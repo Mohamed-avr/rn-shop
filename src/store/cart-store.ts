@@ -15,11 +15,12 @@ type CartState = {
   removeItem: (id: number) => void;
   incrementItem: (id: number) => void;
   decrementItem: (id: number) => void;
-  getTotalPrice: () => number;
+  getTotalPrice: () => string;
   getItemCount: () => number;
   clearCart: () => void;
 };
 
+// define actions
 const initialCartItem: CartItemType[] = [];
 export const useCartStore = create<CartState>((set, get) => ({
   items: initialCartItem,

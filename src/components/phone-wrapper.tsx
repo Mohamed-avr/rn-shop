@@ -12,13 +12,13 @@ export default function PhoneWrapper({
 
   return (
     <View style={{ flex: 1, backgroundColor: "#111" }}>
-      <View
+      {/* <View
         style={{
           flex: 1,
           position: "relative",
           width: "100%",
           paddingHorizontal: 35,
-          paddingTop: 40,
+          paddingTop: 20,
         }}
       >
         <View
@@ -54,7 +54,7 @@ export default function PhoneWrapper({
             resizeMode="contain"
           />
         </View>
-      </View>
+      </View> */}
       <View style={styles.containerWrapper}>
         {/* <View style={styles.btnOff}></View> */}
         <View

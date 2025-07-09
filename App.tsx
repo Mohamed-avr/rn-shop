@@ -4,11 +4,9 @@ import PhoneWrapper from "./src/components/phone-wrapper";
 
 export default function App() {
   return (
-    <PhoneWrapper>
-      <View style={styles.container}>
-        <Text>Open up App.tsx to start working on your app!</Text>
-      </View>
-    </PhoneWrapper>
+    <View style={styles.container}>
+      <Text>Open up App.tsx to start working on your app!</Text>
+    </View>
   );
 }
 
