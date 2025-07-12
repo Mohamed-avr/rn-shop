@@ -15,7 +15,7 @@ type CartState = {
   removeItem: (id: number) => void;
   incrementItem: (id: number) => void;
   decrementItem: (id: number) => void;
-  getTotalPrice: () => string;
+  getTotalPrice: () => number;
   getItemCount: () => number;
   clearCart: () => void;
 };

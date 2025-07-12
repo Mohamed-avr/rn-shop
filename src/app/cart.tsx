@@ -1,10 +1,83 @@
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+  FlatList,
+  Image,
+} from "react-native";
 import React from "react";
+import { useCartStore } from "../store/cart-store";
+import { StatusBar } from "expo-status-bar";
 
-export default function cart() {
+type CartItemType = {
+  id: number;
+  title: string;
+  image: any;
+  price: number;
+  quantity: number;
+};
+
+type CartItemProps = {
+  item: CartItemType;
+  onRemove: (id: number) => void;
+  onIncrement: (id: number) => void;
+  onDecrement: (id: number) => void;
+};
+
+const CartItem = ({
+  item,
+  onRemove,
+  onIncrement,
+  onDecrement,
+}: CartItemProps) => {
   return (
     <View>
-      <Text>cart of the app </Text>
+      <Image source={item.image} style={styles.itemImage} />
+      <View style={styles.itemDetails}>
+        <Text style={styles.itemTitle}>{item.title}</Text>
+        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+      </View>
+    </View>
+  );
+};
+
+export default function cart() {
+  const { items, removeItem, incrementItem, decrementItem, getTotalPrice } =
+    useCartStore();
+
+  const handleCheckout = () => {
+    alert("Proceeding to checkout...", `total price:" $${getTotalPrice()}`);
+  };
+  return (
+    <View style={styles.container}>
+      {/* <StatusBar style={(Platform.OS = "ios" ? "dark" : "auto")} /> */}
+
+      {/*  FlatLIst */}
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CartItem
+            item={item}
+            onRemove={removeItem}
+            onIncrement={incrementItem}
+            onDecrement={decrementItem}
+          />
+        )}
+        contentContainerStyle={styles.cartList}
+      />
+      {/* Footer */}
+      <View style={styles.footer}>
+        <Text style={styles.totalText}>Total: ${getTotalPrice()}</Text>
+        <TouchableOpacity
+          style={styles.checkoutButton}
+          onPress={handleCheckout}
+        >
+          <Text style={styles.checkoutButtonText}>Checkout</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

@@ -219,7 +219,7 @@ export default function ProductDetails() {
               ${totalPrice}{" "}
             </Text>
             {/* right */}
-            <View style={{ flexDirection: "row", gap: 8 }}>
+            <View style={{ flexDirection: "row", gap: 14 }}>
               {/*  add to cart */}
               <TouchableOpacity
                 style={{
@@ -258,8 +258,14 @@ export default function ProductDetails() {
                 }}
               >
                 <Text> Buy now</Text>
-                <Svg width="24" height="24" fill="#222" viewBox="0 0 256 256">
-                  <Path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></Path>
+                <Svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="#000000"
+                  viewBox="0 0 256 256"
+                >
+                  <Path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></Path>
                 </Svg>
               </TouchableOpacity>
               {/*  end buy button  */}
