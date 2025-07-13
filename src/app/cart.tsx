@@ -33,7 +33,7 @@ const CartItem = ({
   onDecrement,
 }: CartItemProps) => {
   return (
-    <View>
+    <View style={styles.cartItem}>
       <Image source={item.image} style={styles.itemImage} />
       <View style={styles.itemDetails}>
         <Text style={styles.itemTitle}>{item.title}</Text>
@@ -46,6 +46,17 @@ const CartItem = ({
 export default function cart() {
   const { items, removeItem, incrementItem, decrementItem, getTotalPrice } =
     useCartStore();
+
+  console.log("Cart items:", items);
+  if (items.length === 0) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ fontSize: 20, textAlign: "center", marginTop: 20 }}>
+          Your cart is empty
+        </Text>
+      </View>
+    );
+  }
 
   const handleCheckout = () => {
     alert("Proceeding to checkout...", `total price:" $${getTotalPrice()}`);
