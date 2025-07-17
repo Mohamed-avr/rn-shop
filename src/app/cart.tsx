@@ -9,45 +9,13 @@ import {
 } from "react-native";
 import React from "react";
 import { useCartStore } from "../store/cart-store";
-import { StatusBar } from "expo-status-bar";
+import CartItem from "../components/cart-item";
 
-type CartItemType = {
-  id: number;
-  title: string;
-  image: any;
-  price: number;
-  quantity: number;
-};
-
-type CartItemProps = {
-  item: CartItemType;
-  onRemove: (id: number) => void;
-  onIncrement: (id: number) => void;
-  onDecrement: (id: number) => void;
-};
-
-const CartItem = ({
-  item,
-  onRemove,
-  onIncrement,
-  onDecrement,
-}: CartItemProps) => {
-  return (
-    <View style={styles.cartItem}>
-      <Image source={item.image} style={styles.itemImage} />
-      <View style={styles.itemDetails}>
-        <Text style={styles.itemTitle}>{item.title}</Text>
-        <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
-      </View>
-    </View>
-  );
-};
-
+//  cart function
 export default function cart() {
   const { items, removeItem, incrementItem, decrementItem, getTotalPrice } =
     useCartStore();
 
-  console.log("Cart items:", items);
   if (items.length === 0) {
     return (
       <View style={styles.container}>
@@ -61,6 +29,7 @@ export default function cart() {
   const handleCheckout = () => {
     alert("Proceeding to checkout...", `total price:" $${getTotalPrice()}`);
   };
+
   return (
     <View style={styles.container}>
       {/* <StatusBar style={(Platform.OS = "ios" ? "dark" : "auto")} /> */}

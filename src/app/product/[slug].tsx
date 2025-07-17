@@ -139,7 +139,15 @@ export default function ProductDetails() {
           )}
         />
       </View>
-      <View style={{ padding: 16, flex: 1, backgroundColor: "#f1f2f6" }}>
+      <View
+        style={{
+          padding: 16,
+          flex: 1,
+          backgroundColor: "#f1f2f6",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+        }}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -191,10 +199,11 @@ export default function ProductDetails() {
           style={{
             position: "absolute",
             bottom: 24,
-            width: "100%",
+            width: "auto",
             left: 0,
+            right: 0,
             height: 60,
-            paddingHorizontal: 22,
+            paddingHorizontal: 16,
           }}
         >
           <View

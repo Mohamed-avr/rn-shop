@@ -21,6 +21,7 @@ export default function Category() {
         options={{
           title: Category.name,
           headerShown: true,
+          headerTitleAlign: "center",
         }}
       />
 
