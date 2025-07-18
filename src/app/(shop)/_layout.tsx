@@ -25,6 +25,7 @@ const TabsLayout = () => {
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
             paddingBottom: 4,
+            overflow: "hidden",
           },
           tabBarLabelStyle: {
             fontSize: 13,
