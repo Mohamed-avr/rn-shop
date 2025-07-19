@@ -33,11 +33,15 @@ export default function Auth() {
     console.log("Sign In Data:", data);
     // Here you would typically call your authentication API
   };
+  const signUp = (data: zod.infer<typeof schema>) => {
+    console.log("Sign In Data:", data);
+    // Here you would typically call your authentication API
+  };
 
   return (
     <ImageBackground
       source={{
-        uri: "https://images.pexels.com/photos/682933/pexels-photo-682933.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        uri: "https://images.unsplash.com/photo-1752490890976-dc8471357439?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D-",
       }}
       style={styles.backgroundImage}
     >
@@ -102,6 +106,14 @@ export default function Auth() {
             {formState.isSubmitting ? "Signing in..." : "Sign In"}
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={handleSubmit(signUp)}
+          disabled={formState.isSubmitting}
+          style={[styles.button, styles.signUpButton]}
+        >
+          <Text style={styles.buttonText}>sign up </Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -144,10 +156,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255, 255, 255, 0.23)",
     borderRadius: 8,
     fontSize: 16,
-    color: "#000",
+    color: "#fff",
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
   },
   button: {
-    backgroundColor: "#6a1b9a",
+    backgroundColor: "rgb(21, 107, 194)",
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,

@@ -3,12 +3,21 @@ import React from "react";
 import { Stack } from "expo-router";
 import PhoneWrapper from "../components/phone-wrapper";
 import { ToastProvider } from "react-native-toast-notifications";
+import Auth from "./auth";
 
 export default function RootLayout() {
   return (
     <PhoneWrapper>
       <ToastProvider>
         <Stack>
+          <Stack.Screen
+            name="auth"
+            options={{
+              title: "auth",
+              headerShown: false,
+              headerTitleAlign: "center",
+            }}
+          />
           <Stack.Screen
             name="(shop)"
             options={{
