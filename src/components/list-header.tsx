@@ -12,11 +12,13 @@ import { FontAwesome } from "@expo/vector-icons";
 import { CATEGORIES } from "../../assets/categories";
 import Category from "../app/categories/[slug]";
 import { useCartStore } from "../store/cart-store";
+
+import { supabase } from "../lib/supabase";
 export default function ListHeader() {
   const { getItemCount } = useCartStore();
 
   const signOutFunc = () => {
-    alert("signed out successfully");
+    supabase.auth.signOut();
   };
   return (
     <View style={[styles.headerContainer]}>

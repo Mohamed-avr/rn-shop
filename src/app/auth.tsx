@@ -9,6 +9,10 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import * as zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Redirect, Stack } from "expo-router";
+import { supabase } from "../lib/supabase";
+import { Toast } from "react-native-toast-notifications";
+import { useAuth } from "../providers/auth-provider";
 // import { ur, Vi } from "zod/locales";
 
 // Define the validation schema using zod
@@ -20,6 +24,9 @@ const schema = zod.object({
 });
 
 export default function Auth() {
+  const { session } = useAuth();
+
+  if (session) return <Redirect href="/(shop)" />;
   // Initialize the form with react-hook-form
   const { control, handleSubmit, formState } = useForm({
     resolver: zodResolver(schema),
@@ -29,13 +36,34 @@ export default function Auth() {
     },
   });
 
-  const signIn = (data: zod.infer<typeof schema>) => {
-    console.log("Sign In Data:", data);
-    // Here you would typically call your authentication API
+  //  signIn handler
+  const signIn = async (data: zod.infer<typeof schema>) => {
+    const { error } = await supabase.auth.signInWithPassword(data);
+
+    if (error) {
+      alert(error.message);
+    } else {
+      Toast.show("Signed in successfully", {
+        type: "success",
+        placement: "top",
+        duration: 1500,
+      });
+    }
   };
-  const signUp = (data: zod.infer<typeof schema>) => {
-    console.log("Sign In Data:", data);
-    // Here you would typically call your authentication API
+
+  //  sign up handler
+  const signUp = async (data: zod.infer<typeof schema>) => {
+    const { error } = await supabase.auth.signUp(data);
+
+    if (error) {
+      alert(error.message);
+    } else {
+      Toast.show("Signed up successfully", {
+        type: "success",
+        placement: "top",
+        duration: 1500,
+      });
+    }
   };
 
   return (
@@ -45,6 +73,14 @@ export default function Auth() {
       }}
       style={styles.backgroundImage}
     >
+      <Stack.Screen
+        name="auth"
+        options={{
+          title: "auth",
+          headerShown: false,
+          headerTitleAlign: "center",
+        }}
+      />
       <View style={styles.overlay} />
 
       <View style={styles.container}>
@@ -115,6 +151,8 @@ export default function Auth() {
           <Text style={styles.buttonText}>sign up </Text>
         </TouchableOpacity>
       </View>
+
+      <Text> {schema._zod.optout}</Text>
     </ImageBackground>
   );
 }

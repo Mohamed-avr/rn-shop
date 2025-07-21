@@ -15,6 +15,7 @@ import { PRODUCTS } from "../../../assets/products";
 import { useCartStore } from "../../store/cart-store";
 import { useState } from "react";
 import { Svg, Path, XmlAST } from "react-native-svg";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 // Global function
 export default function ProductDetails() {
@@ -85,7 +86,7 @@ export default function ProductDetails() {
   const route = useRouter();
   console.log("route", route);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           headerShown: true,
@@ -268,7 +269,6 @@ export default function ProductDetails() {
               >
                 <Text> Buy now</Text>
                 <Svg
-                  xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
                   fill="#000000"
@@ -300,7 +300,7 @@ export default function ProductDetails() {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
