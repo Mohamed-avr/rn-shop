@@ -12,8 +12,13 @@ import ProductListItem from "../../components/product-list-item";
 import ListHeader from "../../components/list-header";
 
 import Auth from "../auth";
+import { useAuth } from "../../providers/auth-provider";
+import { use } from "react";
 
 export default function Home() {
+  const { user, session } = useAuth();
+
+  console.log("Session user ID:", session?.user?.id);
   return (
     <View style={{ flex: 1 }}>
       <FlatList

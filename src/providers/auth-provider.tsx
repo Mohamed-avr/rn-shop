@@ -1,4 +1,3 @@
-// 1. Import necessary stuff
 import {
   createContext,
   useContext,
@@ -9,21 +8,18 @@ import {
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "../lib/supabase";
 
-// 2. Define the types
 type AuthData = {
   session: Session | null;
   loading: boolean;
   user: any;
 };
 
-// 3. Create the context OUTSIDE the component
 const AuthContext = createContext<AuthData>({
   session: null,
   loading: true,
   user: null,
 });
 
-// 4. The Provider component
 export default function AuthProvider({ children }: PropsWithChildren) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState(null);
@@ -34,6 +30,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       const {
         data: { session },
       } = await supabase.auth.getSession();
+
       setSession(session);
 
       if (session) {
@@ -43,8 +40,9 @@ export default function AuthProvider({ children }: PropsWithChildren) {
           .eq("id", session.user.id)
           .single();
 
-        if (error) {
-          console.error("Error fetching user:", error);
+        if (error || !user) {
+          console.error("User not found or error fetching user:", error);
+          setUser(null);
         } else {
           setUser(user);
         }
@@ -66,8 +64,9 @@ export default function AuthProvider({ children }: PropsWithChildren) {
             .eq("id", session.user.id)
             .single();
 
-          if (error) {
-            console.error("Error fetching user:", error);
+          if (error || !user) {
+            console.error("User not found or error fetching user:", error);
+            setUser(null);
           } else {
             setUser(user);
           }
